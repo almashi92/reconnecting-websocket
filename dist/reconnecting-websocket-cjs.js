@@ -77,8 +77,8 @@ var getGlobalWebSocket = function () {
  */
 var isWebSocket = function (w) { return typeof w === 'function' && w.CLOSING === 2; };
 var DEFAULT = {
-    maxReconnectionDelay: 10000,
-    minReconnectionDelay: 1000 + Math.random() * 4000,
+    maxReconnectionDelay: 1000,
+    minReconnectionDelay: 500,
     minUptime: 5000,
     reconnectionDelayGrowFactor: 1.3,
     connectionTimeout: 4000,
@@ -87,8 +87,8 @@ var DEFAULT = {
 };
 var ReconnectingWebSocket = /** @class */ (function () {
     function ReconnectingWebSocket(url, protocols, options) {
-        if (options === void 0) { options = {}; }
         var _this = this;
+        if (options === void 0) { options = {}; }
         this._listeners = {
             error: [],
             message: [],
@@ -385,11 +385,7 @@ var ReconnectingWebSocket = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        if (this._options.debug) {
-            // not using spread because compiled version uses Symbols
-            // tslint:disable-next-line
-            console.log.apply(console, ['RWS>'].concat(args));
-        }
+        if (this._options.debug) ;
     };
     ReconnectingWebSocket.prototype._getNextDelay = function () {
         var _a = this._options, _b = _a.reconnectionDelayGrowFactor, reconnectionDelayGrowFactor = _b === void 0 ? DEFAULT.reconnectionDelayGrowFactor : _b, _c = _a.minReconnectionDelay, minReconnectionDelay = _c === void 0 ? DEFAULT.minReconnectionDelay : _c, _d = _a.maxReconnectionDelay, maxReconnectionDelay = _d === void 0 ? DEFAULT.maxReconnectionDelay : _d;

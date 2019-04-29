@@ -40,8 +40,8 @@ export type Options = {
 };
 
 const DEFAULT = {
-    maxReconnectionDelay: 10000,
-    minReconnectionDelay: 1000 + Math.random() * 4000,
+    maxReconnectionDelay: 1000,
+    minReconnectionDelay: 500,
     minUptime: 5000,
     reconnectionDelayGrowFactor: 1.3,
     connectionTimeout: 4000,
@@ -282,7 +282,7 @@ export default class ReconnectingWebSocket {
         if (this._options.debug) {
             // not using spread because compiled version uses Symbols
             // tslint:disable-next-line
-            console.log.apply(console, ['RWS>'].concat(args));
+            // console.log.apply(console, ['RWS>'].concat(args));
         }
     }
 
